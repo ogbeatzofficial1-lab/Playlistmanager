@@ -958,7 +958,7 @@ const ShareModal = ({
 
           {generatedLink && (
             <div className="space-y-3 border-t border-zinc-800 pt-4">
-              <label className="text-[10px] uppercase font-bold text-zinc-500 tracking-widest">Share Link</label>
+              <label className="text-[10px] uppercase font-bold text-zinc-500 tracking-widest">Preview Link</label>
               <div className="bg-zinc-950 border border-zinc-800 rounded-lg px-4 py-3 text-xs text-zinc-300 break-all">
                 {generatedLink}
               </div>
@@ -3251,7 +3251,7 @@ Lean toward producer, songwriter, and new music language.`;
         cover_image_url: coverImage,
       };
 
-      let shareUrl = `${window.location.origin}${window.location.pathname}?share=${shareToken}`;
+      let shareUrl = `${window.location.origin}/share.php?share=${shareToken}`;
 
       const { error: shareLinkError } = await supabase
         .from('share_links')
@@ -3276,7 +3276,7 @@ Lean toward producer, songwriter, and new music language.`;
         if (options.expiresAt) {
           shareUrlParams.set("expiresAt", options.expiresAt);
         }
-        shareUrl = `${window.location.origin}${window.location.pathname}?${shareUrlParams.toString()}`;
+        shareUrl = `${window.location.origin}/share.php?${shareUrlParams.toString()}`;
       }
       
       toast.success(
