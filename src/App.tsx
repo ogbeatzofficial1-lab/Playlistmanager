@@ -285,16 +285,6 @@ const createShareToken = () => {
   return Math.random().toString(36).slice(2, 14);
 };
 
-const createShareSlug = (value: string) => {
-  const slug = value
-    .toLowerCase()
-    .trim()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-+|-+$/g, '');
-
-  return slug || 'shared-content';
-};
-
 const createSharedTrackPlaceholder = (trackId: string, trackName: string | null): Track => ({
   id: trackId,
   name: trackName || "Shared Track",
@@ -3261,8 +3251,7 @@ Lean toward producer, songwriter, and new music language.`;
         cover_image_url: coverImage,
       };
 
-      const shareSlug = createShareSlug(item.name);
-      let shareUrl = `${window.location.origin}/share/${encodeURIComponent(shareSlug)}/${shareToken}`;
+      let shareUrl = `${window.location.origin}/share.php?share=${shareToken}&name=${encodeURIComponent(item.name)}`;
 
       const { error: shareLinkError } = await supabase
         .from('share_links')
@@ -3288,7 +3277,7 @@ Lean toward producer, songwriter, and new music language.`;
         if (options.expiresAt) {
           shareUrlParams.set("expiresAt", options.expiresAt);
         }
-        shareUrl = `${window.location.origin}/share/${encodeURIComponent(shareSlug)}/${shareToken}?${shareUrlParams.toString()}`;
+        shareUrl = `${window.location.origin}/share.php?${shareUrlParams.toString()}`;
       }
       
       toast.success(

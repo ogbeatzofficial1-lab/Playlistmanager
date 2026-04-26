@@ -92,7 +92,7 @@ The output will be in the `dist/` directory.
 2. Open your InfinityFree account and use FTP or the File Manager.
 3. Upload the contents of `dist/` to the `htdocs/` directory.
 4. Keep the included `public/.htaccess` file in place so direct page loads resolve to `index.html`.
-5. Keep `share.php` in the upload. It powers the rich preview that shows the playlist or track name when you paste a share link, and the app now generates slugged URLs like `/share/playlist-name/token`.
+5. Keep `share.php` in the upload. It powers the rich preview that shows the playlist or track name when you paste a share link, and the app generates `share.php?share=...&name=...` preview URLs.
 6. If you ever host the app in a subdirectory instead of the site root, update `base` in `vite.config.ts` before building.
 
 ---
