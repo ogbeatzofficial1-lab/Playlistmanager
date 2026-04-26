@@ -1,6 +1,8 @@
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteBase /
+  RewriteCond %{QUERY_STRING} (^|&)share= [NC]
+  RewriteRule ^$ share.php [L,QSA]
   RewriteRule ^index\.html$ - [L]
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d

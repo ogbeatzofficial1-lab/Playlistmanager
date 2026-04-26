@@ -94,7 +94,7 @@ function first_row(?array $rows): ?array
 $origin = base_url();
 $shareToken = trim((string)($_GET['share'] ?? $_GET['token'] ?? ''));
 $queryString = (string)($_SERVER['QUERY_STRING'] ?? '');
-$redirectUrl = $queryString !== '' ? '/?' . $queryString : '/';
+$redirectUrl = $queryString !== '' ? '/index.html?' . $queryString : '/index.html';
 
 $title = SITE_NAME;
 $description = 'Listen to shared music from OGBeatz.';
@@ -172,7 +172,7 @@ if ($shareToken !== '') {
     <script>
       window.addEventListener('DOMContentLoaded', function () {
         var query = <?= json_encode((string)($_SERVER['QUERY_STRING'] ?? '')) ?>;
-        var redirectTarget = query ? '/?' + query : '/';
+        var redirectTarget = query ? '/index.html?' + query : '/index.html';
         window.setTimeout(function () {
           window.location.replace(redirectTarget);
         }, 350);
