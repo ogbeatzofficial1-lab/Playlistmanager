@@ -2525,6 +2525,7 @@ Lean toward producer, songwriter, and new music language.`;
           .update({
             name,
             email,
+            client_email: email,
             status: "online",
             last_active: "Recently",
             active_playlists: existingClient.active_playlists ?? 0,
@@ -2549,6 +2550,7 @@ Lean toward producer, songwriter, and new music language.`;
         .insert([{
           name,
           email,
+          client_email: email,
           status: "online",
           last_active: "Recently",
           active_playlists: 0,
@@ -2596,6 +2598,7 @@ Lean toward producer, songwriter, and new music language.`;
       .update({
         name: updates.name,
         email: updates.email,
+        client_email: updates.email,
         status: updates.status,
         active_playlists: updates.activePlaylists,
         last_active: updates.lastActive,
