@@ -101,8 +101,12 @@ $description = 'Listen to shared music from OGBeatz.';
 $image = $origin . DEFAULT_PREVIEW_IMAGE;
 $pageUrl = $origin . '/';
 $clientName = 'Public Link';
+$requestedName = trim((string)($_GET['name'] ?? ''));
 
-if ($shareToken !== '') {
+if ($requestedName !== '') {
+    $title = $requestedName . ' | ' . SITE_NAME;
+    $description = 'Shared track or playlist from OGBeatz.';
+} elseif ($shareToken !== '') {
     $shareLink = first_row(supabase_get_json('/rest/v1/share_links?select=share_token,token,item_type,item_id,item_name,client_name,allow_download,expires_at,cover_image_url,created_at&share_token=eq.' . rawurlencode($shareToken) . '&limit=1'));
     if (!$shareLink) {
         $shareLink = first_row(supabase_get_json('/rest/v1/share_links?select=share_token,token,item_type,item_id,item_name,client_name,allow_download,expires_at,cover_image_url,created_at&token=eq.' . rawurlencode($shareToken) . '&limit=1'));

@@ -3251,7 +3251,7 @@ Lean toward producer, songwriter, and new music language.`;
         cover_image_url: coverImage,
       };
 
-      let shareUrl = `${window.location.origin}/share.php?share=${shareToken}`;
+      let shareUrl = `${window.location.origin}/share.php?share=${shareToken}&name=${encodeURIComponent(item.name)}`;
 
       const { error: shareLinkError } = await supabase
         .from('share_links')
@@ -3264,6 +3264,7 @@ Lean toward producer, songwriter, and new music language.`;
       if (activityError && shareLinkError) {
         const shareUrlParams = new URLSearchParams();
         shareUrlParams.set("share", shareToken);
+        shareUrlParams.set("name", item.name);
         shareUrlParams.set("allowDownload", options.allowDownload ? "1" : "0");
         if (isPlaylist) {
           shareUrlParams.set("playlistId", item.id);
