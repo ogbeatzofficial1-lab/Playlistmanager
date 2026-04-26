@@ -60,7 +60,7 @@ Since we are using the Supabase client directly, these are the primary operation
 1. **Build**: Run `npm run build` to generate the `dist/` folder.
 2. **FTP**: Upload all files from `dist/` to the `htdocs/` folder on InfinityFree.
 3. **Routing**: Keep the generated `.htaccess` file in `dist/` so Apache can route SPA requests back to `index.html`.
-4. **Share Preview**: Keep `share.php` in `dist/`. That file renders the Open Graph tags that make pasted share links show the correct playlist or track preview.
+4. **Share Preview**: Keep `share.php` in `dist/`. That file renders the Open Graph tags that make pasted share links show the correct playlist or track preview. Share URLs now use a slugged path like `/share/playlist-name/token` and are rewritten to `share.php`.
    ```apache
    <IfModule mod_rewrite.c>
      RewriteEngine On
