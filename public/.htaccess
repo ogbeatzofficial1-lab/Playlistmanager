@@ -1,6 +1,7 @@
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteBase /
+  RewriteRule ^share/([^/]+)/([^/]+)/?$ share.php?name=$1&share=$2 [L,QSA]
   RewriteCond %{QUERY_STRING} (^|&)share= [NC]
   RewriteRule ^$ share.php [L,QSA]
   RewriteRule ^index\.html$ - [L]

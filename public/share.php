@@ -99,7 +99,8 @@ $redirectUrl = $queryString !== '' ? '/index.html?' . $queryString : '/index.htm
 $title = SITE_NAME;
 $description = 'Listen to shared music from OGBeatz.';
 $image = $origin . DEFAULT_PREVIEW_IMAGE;
-$pageUrl = $origin . '/';
+$requestUri = (string)($_SERVER['REQUEST_URI'] ?? '/');
+$pageUrl = $origin . ($requestUri !== '' ? $requestUri : '/');
 $clientName = 'Public Link';
 $requestedName = trim((string)($_GET['name'] ?? ''));
 
@@ -150,7 +151,6 @@ if ($requestedName !== '') {
         $title = $itemName . ' | ' . SITE_NAME;
     }
 
-    $pageUrl = $origin . '/share.php?share=' . rawurlencode($shareToken);
     $image = absolutize_image_url($coverImage, $origin);
 }
 
